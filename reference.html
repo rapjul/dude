@@ -1,0 +1,1814 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A simple framework for writing web scrapers using Python decorators">
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.8">
+    
+    
+      
+        <title>Scraper class - dude uncomplicated data extraction</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.644de097.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="style.css">
+    
+    <script>__md_scope=new URL(".",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#scraper-class" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="dude uncomplicated data extraction" class="md-header__button md-logo" aria-label="dude uncomplicated data extraction" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            dude uncomplicated data extraction
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Scraper class
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/roniemartinez/dude" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    roniemartinez/dude
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="dude uncomplicated data extraction" class="md-nav__button md-logo" aria-label="dude uncomplicated data extraction" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    dude uncomplicated data extraction
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/roniemartinez/dude" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    roniemartinez/dude
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="features.html" class="md-nav__link">
+        Features
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="basic_usage.html" class="md-nav__link">
+        Basic Usage
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" data-md-state="indeterminate" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="advanced/index.html">Advanced Usage</a>
+          
+            <label for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Advanced Usage" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced Usage
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="advanced/01_setup.html" class="md-nav__link">
+        Setup
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="advanced/02_navigate.html" class="md-nav__link">
+        Navigate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="advanced/03_grouping.html" class="md-nav__link">
+        Grouping Results
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="advanced/04_url_pattern_matching.html" class="md-nav__link">
+        URL Pattern Matching
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="advanced/05_prioritization.html" class="md-nav__link">
+        Prioritization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="advanced/06_custom_storage.html" class="md-nav__link">
+        Custom Storage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="advanced/07_the_scraper_application_class.html" class="md-nav__link">
+        The Scraper Application Class
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="advanced/08_async.html" class="md-nav__link">
+        Asynchronous Support
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="advanced/09_beautifulsoup4.html" class="md-nav__link">
+        BeautifulSoup4 Scraper
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="advanced/10_parsel.html" class="md-nav__link">
+        Parsel Scraper
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="advanced/11_lxml.html" class="md-nav__link">
+        lxml Scraper
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="advanced/12_pyppeteer.html" class="md-nav__link">
+        Pyppeteer Scraper
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="advanced/13_selenium.html" class="md-nav__link">
+        Selenium Scraper
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="advanced/14_events.html" class="md-nav__link">
+        Events
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" data-md-state="indeterminate" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="supported_parser_backends/index.html">Supported Parser Backends</a>
+          
+            <label for="__nav_5">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Supported Parser Backends" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Supported Parser Backends
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="supported_parser_backends/migrating.html" class="md-nav__link">
+        Migrating Your Web Scrapers to Dude
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cli.html" class="md-nav__link">
+        Command-Line Interface (CLI)
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Scraper class
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="reference.html" class="md-nav__link md-nav__link--active">
+        Scraper class
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dude.scraper.Scraper" class="md-nav__link">
+    dude.scraper.Scraper
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dude.scraper.Scraper.event_shutdown" class="md-nav__link">
+    event_shutdown()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dude.scraper.Scraper.event_startup" class="md-nav__link">
+    event_startup()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dude.scraper.Scraper.group" class="md-nav__link">
+    group()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dude.scraper.Scraper.post_setup" class="md-nav__link">
+    post_setup()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dude.scraper.Scraper.pre_setup" class="md-nav__link">
+    pre_setup()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dude.scraper.Scraper.run" class="md-nav__link">
+    run()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dude.scraper.Scraper.save" class="md-nav__link">
+    save()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dude.scraper.Scraper.select" class="md-nav__link">
+    select()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dude.scraper.Scraper.shutdown" class="md-nav__link">
+    shutdown()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dude.scraper.Scraper.startup" class="md-nav__link">
+    startup()
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dude.scraper.Scraper" class="md-nav__link">
+    dude.scraper.Scraper
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dude.scraper.Scraper.event_shutdown" class="md-nav__link">
+    event_shutdown()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dude.scraper.Scraper.event_startup" class="md-nav__link">
+    event_startup()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dude.scraper.Scraper.group" class="md-nav__link">
+    group()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dude.scraper.Scraper.post_setup" class="md-nav__link">
+    post_setup()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dude.scraper.Scraper.pre_setup" class="md-nav__link">
+    pre_setup()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dude.scraper.Scraper.run" class="md-nav__link">
+    run()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dude.scraper.Scraper.save" class="md-nav__link">
+    save()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dude.scraper.Scraper.select" class="md-nav__link">
+    select()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dude.scraper.Scraper.shutdown" class="md-nav__link">
+    shutdown()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dude.scraper.Scraper.startup" class="md-nav__link">
+    startup()
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/roniemartinez/dude/edit/master/docs/reference.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+
+<h1 id="scraper-class">Scraper class<a class="headerlink" href="#scraper-class" title="Permanent link">&para;</a></h1>
+
+
+  <div class="doc doc-object doc-class">
+
+<a id="dude.scraper.Scraper"></a>
+    <div class="doc doc-contents first">
+
+      <p>Convenience class to easily use the available decorators.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>dude/scraper.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Scraper</span><span class="p">(</span><span class="n">ScraperBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convenience class to easily use the available decorators.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">urls</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="n">pages</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">proxy</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">output</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="nb">format</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;json&quot;</span><span class="p">,</span>
+        <span class="n">follow_urls</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">save_per_page</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="c1"># extra args</span>
+        <span class="n">parser</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;playwright&quot;</span><span class="p">,</span>
+        <span class="n">headless</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">browser_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;chromium&quot;</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convenience method to handle switching between different types of parser backends.</span>
+
+<span class="sd">        :param urls: List of website URLs.</span>
+<span class="sd">        :param pages: Maximum number of pages to crawl before exiting (default=1). This is only used when a navigate handler is defined. # noqa</span>
+<span class="sd">        :param proxy: Proxy settings.</span>
+<span class="sd">        :param output: Output file. If not provided, prints in the terminal.</span>
+<span class="sd">        :param format: Output file format. If not provided, uses the extension of the output file or defaults to json.</span>
+<span class="sd">        :param follow_urls: Automatically follow URLs.</span>
+<span class="sd">        :param save_per_page: Flag to save data on every page extraction or not. If not, saves all the data at the end.</span>
+
+<span class="sd">        :param parser: Parser backend [&quot;playwright&quot; (default), &quot;bs4&quot;, &quot;parsel, &quot;lxml&quot;, &quot;pyppeteer&quot; or &quot;selenium&quot;]</span>
+<span class="sd">        :param headless: Enables headless browser. (default=True)</span>
+<span class="sd">        :param browser_type: Playwright supported browser types (&quot;chromium&quot;, &quot;chrome&quot;, &quot;webkit&quot;, or &quot;firefox&quot;).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Scraper started...&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">scraper</span><span class="p">:</span>
+            <span class="n">scraper_class</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">ScraperBase</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">parser</span> <span class="o">==</span> <span class="s2">&quot;bs4&quot;</span><span class="p">:</span>
+                <span class="kn">from</span> <span class="nn">.optional.beautifulsoup_scraper</span> <span class="kn">import</span> <span class="n">BeautifulSoupScraper</span>
+
+                <span class="n">scraper_class</span> <span class="o">=</span> <span class="n">BeautifulSoupScraper</span>
+            <span class="k">elif</span> <span class="n">parser</span> <span class="o">==</span> <span class="s2">&quot;parsel&quot;</span><span class="p">:</span>
+                <span class="kn">from</span> <span class="nn">.optional.parsel_scraper</span> <span class="kn">import</span> <span class="n">ParselScraper</span>
+
+                <span class="n">scraper_class</span> <span class="o">=</span> <span class="n">ParselScraper</span>
+            <span class="k">elif</span> <span class="n">parser</span> <span class="o">==</span> <span class="s2">&quot;lxml&quot;</span><span class="p">:</span>
+                <span class="kn">from</span> <span class="nn">.optional.lxml_scraper</span> <span class="kn">import</span> <span class="n">LxmlScraper</span>
+
+                <span class="n">scraper_class</span> <span class="o">=</span> <span class="n">LxmlScraper</span>
+            <span class="k">elif</span> <span class="n">parser</span> <span class="o">==</span> <span class="s2">&quot;pyppeteer&quot;</span><span class="p">:</span>
+                <span class="kn">from</span> <span class="nn">.optional.pyppeteer_scraper</span> <span class="kn">import</span> <span class="n">PyppeteerScraper</span>
+
+                <span class="n">scraper_class</span> <span class="o">=</span> <span class="n">PyppeteerScraper</span>
+            <span class="k">elif</span> <span class="n">parser</span> <span class="o">==</span> <span class="s2">&quot;selenium&quot;</span><span class="p">:</span>
+                <span class="kn">from</span> <span class="nn">.optional.selenium_scraper</span> <span class="kn">import</span> <span class="n">SeleniumScraper</span>
+
+                <span class="n">scraper_class</span> <span class="o">=</span> <span class="n">SeleniumScraper</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">scraper_class</span> <span class="o">=</span> <span class="n">PlaywrightScraper</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">scraper</span> <span class="o">=</span> <span class="n">scraper_class</span><span class="p">(</span>
+                <span class="n">rules</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">,</span>
+                <span class="n">groups</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">,</span>
+                <span class="n">save_rules</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">save_rules</span><span class="p">,</span>
+                <span class="n">events</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">,</span>
+                <span class="n">has_async</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">has_async</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">scraper</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+            <span class="n">urls</span><span class="o">=</span><span class="n">urls</span><span class="p">,</span>
+            <span class="n">pages</span><span class="o">=</span><span class="n">pages</span><span class="p">,</span>
+            <span class="n">proxy</span><span class="o">=</span><span class="n">proxy</span><span class="p">,</span>
+            <span class="n">output</span><span class="o">=</span><span class="n">output</span><span class="p">,</span>
+            <span class="nb">format</span><span class="o">=</span><span class="nb">format</span><span class="p">,</span>
+            <span class="n">follow_urls</span><span class="o">=</span><span class="n">follow_urls</span><span class="p">,</span>
+            <span class="n">save_per_page</span><span class="o">=</span><span class="n">save_per_page</span> <span class="ow">or</span> <span class="n">follow_urls</span><span class="p">,</span>
+            <span class="o">**</span><span class="p">{</span><span class="s2">&quot;headless&quot;</span><span class="p">:</span> <span class="n">headless</span><span class="p">,</span> <span class="s2">&quot;browser_type&quot;</span><span class="p">:</span> <span class="n">browser_type</span><span class="p">},</span>
+        <span class="p">)</span>
+</code></pre></div>
+        </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h2 id="dude.scraper.Scraper.event_shutdown" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">event_shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-inherited"><code>inherited</code></small>
+  </span>
+
+<a href="#dude.scraper.Scraper.event_shutdown" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Run all shutdown events</p>
+
+        <details class="quote">
+          <summary>Source code in <code>dude/scraper.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">event_shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Run all shutdown events</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">run_event</span><span class="p">(</span><span class="s2">&quot;shutdown&quot;</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h2 id="dude.scraper.Scraper.event_startup" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">event_startup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-inherited"><code>inherited</code></small>
+  </span>
+
+<a href="#dude.scraper.Scraper.event_startup" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Run all startup events</p>
+
+        <details class="quote">
+          <summary>Source code in <code>dude/scraper.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">event_startup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Run all startup events</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">run_event</span><span class="p">(</span><span class="s2">&quot;startup&quot;</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h2 id="dude.scraper.Scraper.group" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">selector</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">css</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xpath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-inherited"><code>inherited</code></small>
+  </span>
+
+<a href="#dude.scraper.Scraper.group" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Decorator to register a handler function to a given group.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>selector</code></td>
+        <td><code>str</code></td>
+        <td><p>Element selector (any of CSS, XPath, text, regex).</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>css</code></td>
+        <td><code>str</code></td>
+        <td><p>CSS selector.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>xpath</code></td>
+        <td><code>str</code></td>
+        <td><p>XPath selector.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>text</code></td>
+        <td><code>str</code></td>
+        <td><p>Text selector.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>regex</code></td>
+        <td><code>str</code></td>
+        <td><p>Regular expression selector</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>dude/scraper.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">group</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">selector</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">css</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">xpath</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">regex</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decorator to register a handler function to a given group.</span>
+
+<span class="sd">    :param selector: Element selector (any of CSS, XPath, text, regex).</span>
+<span class="sd">    :param css: CSS selector.</span>
+<span class="sd">    :param xpath: XPath selector.</span>
+<span class="sd">    :param text: Text selector.</span>
+<span class="sd">    :param regex: Regular expression selector</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Callable</span><span class="p">,</span> <span class="n">Coroutine</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">selector</span> <span class="ow">or</span> <span class="n">css</span> <span class="ow">or</span> <span class="n">xpath</span> <span class="ow">or</span> <span class="n">text</span> <span class="ow">or</span> <span class="n">regex</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Any of selector, css, xpath, text or regex selectors must be present&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">has_async</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="n">group</span> <span class="o">=</span> <span class="n">Selector</span><span class="p">(</span><span class="n">selector</span><span class="o">=</span><span class="n">selector</span><span class="p">,</span> <span class="n">css</span><span class="o">=</span><span class="n">css</span><span class="p">,</span> <span class="n">xpath</span><span class="o">=</span><span class="n">xpath</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="n">regex</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">scraper</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="s2">&quot;Group &#39;</span><span class="si">%s</span><span class="s2">&#39; already exists for function &#39;</span><span class="si">%s</span><span class="s2">&#39;. Skipping &#39;</span><span class="si">%s</span><span class="s2">&#39;...&quot;</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">func</span><span class="p">],</span>
+                    <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                    <span class="n">group</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">func</span><span class="p">]</span> <span class="o">=</span> <span class="n">group</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">scraper</span><span class="o">.</span><span class="n">groups</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="s2">&quot;Group &#39;</span><span class="si">%s</span><span class="s2">&#39; already exists for function &#39;</span><span class="si">%s</span><span class="s2">&#39;. Skipping &#39;</span><span class="si">%s</span><span class="s2">&#39;...&quot;</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">scraper</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">func</span><span class="p">],</span>
+                    <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                    <span class="n">group</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">scraper</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">func</span><span class="p">]</span> <span class="o">=</span> <span class="n">group</span>
+        <span class="k">return</span> <span class="n">func</span>
+
+    <span class="k">return</span> <span class="n">wrapper</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h2 id="dude.scraper.Scraper.post_setup" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">post_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-inherited"><code>inherited</code></small>
+  </span>
+
+<a href="#dude.scraper.Scraper.post_setup" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Decorator to register a function to post-setup events.</p>
+<p>Post-setup events are executed after running the setup functions and before the actual web-scraping happens.
+This is useful when "page clean-ups" are done in the setup functions.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>dude/scraper.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">post_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decorator to register a function to post-setup events.</span>
+
+<span class="sd">    Post-setup events are executed after running the setup functions and before the actual web-scraping happens.</span>
+<span class="sd">    This is useful when &quot;page clean-ups&quot; are done in the setup functions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">has_async</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="n">events</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scraper</span><span class="o">.</span><span class="n">events</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scraper</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span>
+        <span class="n">events</span><span class="p">[</span><span class="s2">&quot;post-setup&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">func</span>
+
+    <span class="k">return</span> <span class="n">wrapper</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h2 id="dude.scraper.Scraper.pre_setup" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">pre_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-inherited"><code>inherited</code></small>
+  </span>
+
+<a href="#dude.scraper.Scraper.pre_setup" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Decorator to register a function to pre-setup events.</p>
+<p>Pre-setup events are executed after a page is loaded (or HTTP response in case of HTTPX) and
+before running the setup functions.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>dude/scraper.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">pre_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decorator to register a function to pre-setup events.</span>
+
+<span class="sd">    Pre-setup events are executed after a page is loaded (or HTTP response in case of HTTPX) and</span>
+<span class="sd">    before running the setup functions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">has_async</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="n">events</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scraper</span><span class="o">.</span><span class="n">events</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scraper</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span>
+        <span class="n">events</span><span class="p">[</span><span class="s2">&quot;pre-setup&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">func</span>
+
+    <span class="k">return</span> <span class="n">wrapper</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h2 id="dude.scraper.Scraper.run" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">urls</span><span class="p">,</span> <span class="n">pages</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">proxy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="n">follow_urls</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_per_page</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="s1">&#39;playwright&#39;</span><span class="p">,</span> <span class="n">headless</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">browser_type</span><span class="o">=</span><span class="s1">&#39;chromium&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+
+<a href="#dude.scraper.Scraper.run" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Convenience method to handle switching between different types of parser backends.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>urls</code></td>
+        <td><code>Sequence[str]</code></td>
+        <td><p>List of website URLs.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>pages</code></td>
+        <td><code>int</code></td>
+        <td><p>Maximum number of pages to crawl before exiting (default=1). This is only used when a navigate handler is defined. # noqa</p></td>
+        <td><code>1</code></td>
+      </tr>
+      <tr>
+        <td><code>proxy</code></td>
+        <td><code>Optional[Any]</code></td>
+        <td><p>Proxy settings.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>output</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Output file. If not provided, prints in the terminal.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>format</code></td>
+        <td><code>str</code></td>
+        <td><p>Output file format. If not provided, uses the extension of the output file or defaults to json.</p></td>
+        <td><code>&#39;json&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>follow_urls</code></td>
+        <td><code>bool</code></td>
+        <td><p>Automatically follow URLs.</p></td>
+        <td><code>False</code></td>
+      </tr>
+      <tr>
+        <td><code>save_per_page</code></td>
+        <td><code>bool</code></td>
+        <td><p>Flag to save data on every page extraction or not. If not, saves all the data at the end.</p></td>
+        <td><code>False</code></td>
+      </tr>
+      <tr>
+        <td><code>parser</code></td>
+        <td><code>str</code></td>
+        <td><p>Parser backend ["playwright" (default), "bs4", "parsel, "lxml", "pyppeteer" or "selenium"]</p></td>
+        <td><code>&#39;playwright&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>headless</code></td>
+        <td><code>bool</code></td>
+        <td><p>Enables headless browser. (default=True)</p></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>browser_type</code></td>
+        <td><code>str</code></td>
+        <td><p>Playwright supported browser types ("chromium", "chrome", "webkit", or "firefox").</p></td>
+        <td><code>&#39;chromium&#39;</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>dude/scraper.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">run</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">urls</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">pages</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">proxy</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">output</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="nb">format</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;json&quot;</span><span class="p">,</span>
+    <span class="n">follow_urls</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">save_per_page</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="c1"># extra args</span>
+    <span class="n">parser</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;playwright&quot;</span><span class="p">,</span>
+    <span class="n">headless</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">browser_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;chromium&quot;</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convenience method to handle switching between different types of parser backends.</span>
+
+<span class="sd">    :param urls: List of website URLs.</span>
+<span class="sd">    :param pages: Maximum number of pages to crawl before exiting (default=1). This is only used when a navigate handler is defined. # noqa</span>
+<span class="sd">    :param proxy: Proxy settings.</span>
+<span class="sd">    :param output: Output file. If not provided, prints in the terminal.</span>
+<span class="sd">    :param format: Output file format. If not provided, uses the extension of the output file or defaults to json.</span>
+<span class="sd">    :param follow_urls: Automatically follow URLs.</span>
+<span class="sd">    :param save_per_page: Flag to save data on every page extraction or not. If not, saves all the data at the end.</span>
+
+<span class="sd">    :param parser: Parser backend [&quot;playwright&quot; (default), &quot;bs4&quot;, &quot;parsel, &quot;lxml&quot;, &quot;pyppeteer&quot; or &quot;selenium&quot;]</span>
+<span class="sd">    :param headless: Enables headless browser. (default=True)</span>
+<span class="sd">    :param browser_type: Playwright supported browser types (&quot;chromium&quot;, &quot;chrome&quot;, &quot;webkit&quot;, or &quot;firefox&quot;).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Scraper started...&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">scraper</span><span class="p">:</span>
+        <span class="n">scraper_class</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">ScraperBase</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">parser</span> <span class="o">==</span> <span class="s2">&quot;bs4&quot;</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">.optional.beautifulsoup_scraper</span> <span class="kn">import</span> <span class="n">BeautifulSoupScraper</span>
+
+            <span class="n">scraper_class</span> <span class="o">=</span> <span class="n">BeautifulSoupScraper</span>
+        <span class="k">elif</span> <span class="n">parser</span> <span class="o">==</span> <span class="s2">&quot;parsel&quot;</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">.optional.parsel_scraper</span> <span class="kn">import</span> <span class="n">ParselScraper</span>
+
+            <span class="n">scraper_class</span> <span class="o">=</span> <span class="n">ParselScraper</span>
+        <span class="k">elif</span> <span class="n">parser</span> <span class="o">==</span> <span class="s2">&quot;lxml&quot;</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">.optional.lxml_scraper</span> <span class="kn">import</span> <span class="n">LxmlScraper</span>
+
+            <span class="n">scraper_class</span> <span class="o">=</span> <span class="n">LxmlScraper</span>
+        <span class="k">elif</span> <span class="n">parser</span> <span class="o">==</span> <span class="s2">&quot;pyppeteer&quot;</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">.optional.pyppeteer_scraper</span> <span class="kn">import</span> <span class="n">PyppeteerScraper</span>
+
+            <span class="n">scraper_class</span> <span class="o">=</span> <span class="n">PyppeteerScraper</span>
+        <span class="k">elif</span> <span class="n">parser</span> <span class="o">==</span> <span class="s2">&quot;selenium&quot;</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">.optional.selenium_scraper</span> <span class="kn">import</span> <span class="n">SeleniumScraper</span>
+
+            <span class="n">scraper_class</span> <span class="o">=</span> <span class="n">SeleniumScraper</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">scraper_class</span> <span class="o">=</span> <span class="n">PlaywrightScraper</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">scraper</span> <span class="o">=</span> <span class="n">scraper_class</span><span class="p">(</span>
+            <span class="n">rules</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">,</span>
+            <span class="n">groups</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">,</span>
+            <span class="n">save_rules</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">save_rules</span><span class="p">,</span>
+            <span class="n">events</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">,</span>
+            <span class="n">has_async</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">has_async</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">scraper</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="n">urls</span><span class="o">=</span><span class="n">urls</span><span class="p">,</span>
+        <span class="n">pages</span><span class="o">=</span><span class="n">pages</span><span class="p">,</span>
+        <span class="n">proxy</span><span class="o">=</span><span class="n">proxy</span><span class="p">,</span>
+        <span class="n">output</span><span class="o">=</span><span class="n">output</span><span class="p">,</span>
+        <span class="nb">format</span><span class="o">=</span><span class="nb">format</span><span class="p">,</span>
+        <span class="n">follow_urls</span><span class="o">=</span><span class="n">follow_urls</span><span class="p">,</span>
+        <span class="n">save_per_page</span><span class="o">=</span><span class="n">save_per_page</span> <span class="ow">or</span> <span class="n">follow_urls</span><span class="p">,</span>
+        <span class="o">**</span><span class="p">{</span><span class="s2">&quot;headless&quot;</span><span class="p">:</span> <span class="n">headless</span><span class="p">,</span> <span class="s2">&quot;browser_type&quot;</span><span class="p">:</span> <span class="n">browser_type</span><span class="p">},</span>
+    <span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h2 id="dude.scraper.Scraper.save" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">format</span><span class="p">,</span> <span class="n">is_per_page</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-inherited"><code>inherited</code></small>
+  </span>
+
+<a href="#dude.scraper.Scraper.save" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Decorator to register a save function to a format.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>format</code></td>
+        <td><code>str</code></td>
+        <td><p>Format (json, csv, or any custom string).</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>is_per_page</code></td>
+        <td><code>bool</code></td>
+        <td><p>Flag to identify if func will be called after each page.</p></td>
+        <td><code>False</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>dude/scraper.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">is_per_page</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decorator to register a save function to a format.</span>
+
+<span class="sd">    :param format: Format (json, csv, or any custom string).</span>
+<span class="sd">    :param is_per_page: Flag to identify if func will be called after each page.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">has_async</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="n">save_rules</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scraper</span><span class="o">.</span><span class="n">save_rules</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scraper</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_rules</span>
+        <span class="n">save_rules</span><span class="p">[</span><span class="nb">format</span><span class="p">,</span> <span class="n">is_per_page</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span>
+        <span class="k">return</span> <span class="n">func</span>
+
+    <span class="k">return</span> <span class="n">wrapper</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h2 id="dude.scraper.Scraper.select" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">select</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">selector</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">setup</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">navigate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">css</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xpath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group_css</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group_xpath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group_text</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group_regex</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-inherited"><code>inherited</code></small>
+  </span>
+
+<a href="#dude.scraper.Scraper.select" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Decorator to register a handler function to a given selector.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>selector</code></td>
+        <td><code>str</code></td>
+        <td><p>Element selector (CSS, XPath, text, regex).</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>group</code></td>
+        <td><code>str</code></td>
+        <td><p>(Optional) Element selector where the matched element should be grouped. Defaults to ":root".</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>setup</code></td>
+        <td><code>bool</code></td>
+        <td><p>Flag to register a setup handler.</p></td>
+        <td><code>False</code></td>
+      </tr>
+      <tr>
+        <td><code>navigate</code></td>
+        <td><code>bool</code></td>
+        <td><p>Flag to register a navigate handler.</p></td>
+        <td><code>False</code></td>
+      </tr>
+      <tr>
+        <td><code>url</code></td>
+        <td><code>str</code></td>
+        <td><p>URL pattern. Run the handler function only when the pattern matches (defaults to *).</p></td>
+        <td><code>&#39;*&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>priority</code></td>
+        <td><code>int</code></td>
+        <td><p>Priority, the lowest value will be executed first (default 100).</p></td>
+        <td><code>100</code></td>
+      </tr>
+      <tr>
+        <td><code>css</code></td>
+        <td><code>str</code></td>
+        <td><p>CSS selector.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>xpath</code></td>
+        <td><code>str</code></td>
+        <td><p>XPath selector.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>text</code></td>
+        <td><code>str</code></td>
+        <td><p>Text selector.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>regex</code></td>
+        <td><code>str</code></td>
+        <td><p>Regular expression selector</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>group_css</code></td>
+        <td><code>str</code></td>
+        <td><p>Group CSS selector.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>group_xpath</code></td>
+        <td><code>str</code></td>
+        <td><p>Group XPath selector.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>group_text</code></td>
+        <td><code>str</code></td>
+        <td><p>Group Text selector.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>group_regex</code></td>
+        <td><code>str</code></td>
+        <td><p>Group Regular expression selector</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>dude/scraper.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">select</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">selector</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">group</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">setup</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">navigate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;*&quot;</span><span class="p">,</span>
+    <span class="n">priority</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="n">css</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">xpath</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">regex</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">group_css</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">group_xpath</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">group_text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">group_regex</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decorator to register a handler function to a given selector.</span>
+
+<span class="sd">    :param selector: Element selector (CSS, XPath, text, regex).</span>
+<span class="sd">    :param group: (Optional) Element selector where the matched element should be grouped. Defaults to &quot;:root&quot;.</span>
+<span class="sd">    :param setup: Flag to register a setup handler.</span>
+<span class="sd">    :param navigate: Flag to register a navigate handler.</span>
+<span class="sd">    :param url: URL pattern. Run the handler function only when the pattern matches (defaults to *).</span>
+<span class="sd">    :param priority: Priority, the lowest value will be executed first (default 100).</span>
+<span class="sd">    :param css: CSS selector.</span>
+<span class="sd">    :param xpath: XPath selector.</span>
+<span class="sd">    :param text: Text selector.</span>
+<span class="sd">    :param regex: Regular expression selector</span>
+<span class="sd">    :param group_css: Group CSS selector.</span>
+<span class="sd">    :param group_xpath: Group XPath selector.</span>
+<span class="sd">    :param group_text: Group Text selector.</span>
+<span class="sd">    :param group_regex: Group Regular expression selector</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Callable</span><span class="p">,</span> <span class="n">Coroutine</span><span class="p">]:</span>
+        <span class="n">sel</span> <span class="o">=</span> <span class="n">Selector</span><span class="p">(</span><span class="n">selector</span><span class="o">=</span><span class="n">selector</span><span class="p">,</span> <span class="n">css</span><span class="o">=</span><span class="n">css</span><span class="p">,</span> <span class="n">xpath</span><span class="o">=</span><span class="n">xpath</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="n">regex</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">sel</span><span class="p">,</span> <span class="s2">&quot;Any of selector, css, xpath, text and regex params should be present.&quot;</span>
+
+        <span class="k">if</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">has_async</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="n">rule</span> <span class="o">=</span> <span class="n">Rule</span><span class="p">(</span>
+            <span class="n">selector</span><span class="o">=</span><span class="n">sel</span><span class="p">,</span>
+            <span class="n">group</span><span class="o">=</span><span class="n">Selector</span><span class="p">(</span><span class="n">selector</span><span class="o">=</span><span class="n">group</span><span class="p">,</span> <span class="n">css</span><span class="o">=</span><span class="n">group_css</span><span class="p">,</span> <span class="n">xpath</span><span class="o">=</span><span class="n">group_xpath</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">group_text</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="n">group_regex</span><span class="p">),</span>
+            <span class="n">url_pattern</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+            <span class="n">handler</span><span class="o">=</span><span class="n">func</span><span class="p">,</span>
+            <span class="n">setup</span><span class="o">=</span><span class="n">setup</span><span class="p">,</span>
+            <span class="n">navigate</span><span class="o">=</span><span class="n">navigate</span><span class="p">,</span>
+            <span class="n">priority</span><span class="o">=</span><span class="n">priority</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">rules</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scraper</span><span class="o">.</span><span class="n">rules</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scraper</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">rules</span>
+        <span class="n">rules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">func</span>
+
+    <span class="k">return</span> <span class="n">wrapper</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h2 id="dude.scraper.Scraper.shutdown" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-inherited"><code>inherited</code></small>
+  </span>
+
+<a href="#dude.scraper.Scraper.shutdown" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Decorator to register a function to the shutdown events.</p>
+<p>Shutdown events are executed before terminating the application for cleaning up or closing resources like
+files and database sessions.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>dude/scraper.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decorator to register a function to the shutdown events.</span>
+
+<span class="sd">    Shutdown events are executed before terminating the application for cleaning up or closing resources like</span>
+<span class="sd">    files and database sessions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">has_async</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="n">events</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scraper</span><span class="o">.</span><span class="n">events</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scraper</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span>
+        <span class="n">events</span><span class="p">[</span><span class="s2">&quot;shutdown&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">func</span>
+
+    <span class="k">return</span> <span class="n">wrapper</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h2 id="dude.scraper.Scraper.startup" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">startup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-inherited"><code>inherited</code></small>
+  </span>
+
+<a href="#dude.scraper.Scraper.startup" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Decorator to register a function to startup events.</p>
+<p>Startup events are executed before any actual scraping happens to, for example, setup databases, etc.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>dude/scraper.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">startup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decorator to register a function to startup events.</span>
+
+<span class="sd">    Startup events are executed before any actual scraping happens to, for example, setup databases, etc.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">has_async</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="n">events</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scraper</span><span class="o">.</span><span class="n">events</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scraper</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span>
+        <span class="n">events</span><span class="p">[</span><span class="s2">&quot;startup&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">func</span>
+
+    <span class="k">return</span> <span class="n">wrapper</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="cli.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Command-Line Interface (CLI)" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Command-Line Interface (CLI)
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Ronie Martinez
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.expand", "navigation.indexes", "toc.follow", "content.code.annotate"], "search": "assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.c44cc438.min.js"></script>
+      
+    
+  </body>
+</html>
