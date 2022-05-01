@@ -3,8 +3,8 @@ from typing import Dict
 import pytest
 from playwright import sync_api
 
-from dude import Scraper
-from dude.rule import Selector, SelectorType
+from dude_pyto import Scraper
+from dude_pyto.rule import Selector, SelectorType
 
 
 @pytest.mark.parametrize(

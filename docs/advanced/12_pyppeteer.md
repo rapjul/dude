@@ -15,7 +15,7 @@ Pyppeteer is an optional dependency and can only be installed via `pip` using th
 ## Required changes to your script in order to use Pyppeteer
 
 Instead of Playwright's `ElementHandle` objects when using Playwright as parser backend, Pyppeteer has its own `ElementHandle` objects that are passed to the decorated functions.
-The decorated functions will need to accept 2 arguments, `element` and `page` objects. 
+The decorated functions will need to accept 2 arguments, `element` and `page` objects.
 This is needed because Pyppeteer elements does not expose a convenient function to get the text content.
 
 !!! info
@@ -25,15 +25,15 @@ This is needed because Pyppeteer elements does not expose a convenient function 
 === "Python"
 
     ```python
-    from dude import select
+    from dude_pyto import select
 
 
     @select(css="a.url")
     async def result_url(element, page): # (1)
         handle = await element.getProperty("href") # (2)
         return {"url": await handle.jsonValue()} # (3)
-    
-    
+
+
     @select(css=".title")
     async def result_title(element, page):
         return {"title": await page.evaluate("(element) => element.textContent", element)} # (4)
@@ -44,14 +44,14 @@ This is needed because Pyppeteer elements does not expose a convenient function 
     3. `jsonValue()` is used to convert Pyppeteer objects to Python types.
     4. `Page.evaluate()` is used to get the element's text content.
 
-## Running Dude with Pyppeteer 
+## Running dude_pyto with Pyppeteer
 
 You can run Pyppeteer parser backend using the `--pyppeteer` command-line argument or `parser="pyppeteer"` parameter to `run()`.
 
 === "Terminal"
 
     ```commandline
-    dude scrape --url "<url>" --pyppeteer --output data.json path/to/script.py
+    dude_pyto scrape --url "<url>" --pyppeteer --output data.json path/to/script.py
     ```
 
 === "Python"

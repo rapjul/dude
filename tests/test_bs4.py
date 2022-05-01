@@ -5,13 +5,18 @@ from unittest import mock
 from urllib.parse import urljoin
 
 import pytest
-from braveblock import Adblocker
 from bs4 import BeautifulSoup
+# from braveblock import Adblocker
 from httpx import Request
 from respx import Router
 
-from dude import Scraper
-from dude.optional.beautifulsoup_scraper import BeautifulSoupScraper
+try:
+    from braveblock import Adblocker
+except ImportError:
+    pass
+
+from dude_pyto import Scraper
+from dude_pyto.optional.beautifulsoup_scraper import BeautifulSoupScraper
 
 
 @pytest.fixture()

@@ -1,6 +1,6 @@
 # Grouping Results
 
-When scraping a page containing a list of information, for example, containing URLs, titles and descriptions, it is important to know how data can be grouped together. 
+When scraping a page containing a list of information, for example, containing URLs, titles and descriptions, it is important to know how data can be grouped together.
 By default, all scraped results are grouped by `:root` which is the root document.
 To specify grouping, pass `group=<selector-for-grouping>` to `@select()` decorator.
 
@@ -8,11 +8,11 @@ In the example below, the results are grouped by an element with class `custom-g
 Click on the annotations (+ sign) for more details.
 
 === "Python"
-    
+
     ```python
-    from dude import select
-    
-    
+    from dude_pyto import select
+
+
     @select(css=".title", group=".custom-group") # (1)
     def result_title(element):
         return {"title": element.text_content()}
@@ -24,11 +24,11 @@ Click on the annotations (+ sign) for more details.
 You can also specify groups by using the `@group()` decorator and passing the argument `selector="<selector-for-grouping>"`.
 
 === "Python"
-    
+
     ```python
-    from dude import group, select
-    
-    
+    from dude_pyto import group, select
+
+
     @group(css=".custom-group") # (1)
     @select(css=".title")
     def result_title(element):
@@ -45,9 +45,9 @@ Please take note that `group_css`, `group_xpath`, `group_text` and `group_regex`
 === "Python"
 
     ```python
-    from dude import select
-    
-    
+    from dude_pyto import select
+
+
     @select(css=".title", group_css="<css-selector>")     # (1)
     @select(css=".title", group_xpath="<xpath-selector>") # (2)
     @select(css=".title", group_text="<text-selector>")   # (3)
@@ -69,11 +69,11 @@ Similarly, `css`, `xpath`, `text` and `regex` are specific and `selector` can co
 === "Python"
 
     ```python
-    from dude import select
-    
-    
+    from dude_pyto import select
+
+
     @group(css="<css-selector>") # (1)
-    @select(selector="<selector>") 
+    @select(selector="<selector>")
     def handler(element):
         return {"<key>": "<value-extracted-from-element>"}
     ```
@@ -84,7 +84,7 @@ It is possible to use 2 or more of these types at the same time but only one wil
 
 ## Why we need to group the results
 
-The `group` parameter or the `@group()` decorator has the advantage of making sure that items are in their correct group. 
+The `group` parameter or the `@group()` decorator has the advantage of making sure that items are in their correct group.
 Take for example the HTML source below, notice that in the second `div`, there is no description.
 
 === "HTML"
@@ -168,7 +168,7 @@ While this works, it can be hard to maintain.
 === "Performing all actions in one function"
 
     ```python
-    from dude import select
+    from dude_pyto import select
 
 
     @select(css=".custom-group")
@@ -177,19 +177,19 @@ While this works, it can be hard to maintain.
         Perform all the heavy-lifting in a single handler.
         """
         data = {}
-    
+
         url = element.query_selector("a.url")
         if url:
             data["url"] = url.get_attribute("href")
-    
+
         title = element.query_selector(".title")
         if title:
             data["title"] = title.text_content()
-    
+
         description = element.query_selector(".description")
         if description:
             data["description"] = description.text_content()
-    
+
         return data
     ```
 
@@ -198,19 +198,19 @@ It will only require us to write 3 simple functions but is much easier to read a
 === "Separate handlers with grouping"
 
     ```python
-    from dude import group, select
+    from dude_pyto import group, select
 
 
     @select(css="a.url", group=".custom-group")
     def result_url(element):
         return {"url": element.get_attribute("href")}
-    
-    
+
+
     @select(css=".title", group=".custom-group")
     def result_title(element):
         return {"title": element.text_content()}
-    
-    
+
+
     @select(css=".description", group=".custom-group")
     def result_description(element):
         return {"description": element.text_content()}
@@ -225,7 +225,7 @@ It will only require us to write 3 simple functions but is much easier to read a
 !!! info
 
     Use `@group()` decorator when using multiple `@select()` decorators in one function in order to reduce repetition.
-    
+
 
 ## Examples
 

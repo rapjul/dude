@@ -2,18 +2,23 @@ from typing import Any, Dict, List, Optional
 from unittest import mock
 
 import pytest
-from braveblock import Adblocker
+# from braveblock import Adblocker
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 
-from dude import Scraper
-from dude.optional.selenium_scraper import SeleniumScraper
+try:
+    from braveblock import Adblocker
+except ImportError:
+    pass
+
+from dude_pyto import Scraper
+from dude_pyto.optional.selenium_scraper import SeleniumScraper
 
 
 @pytest.fixture()
 def scraper_application_with_selenium_parser() -> Scraper:
     scraper = SeleniumScraper()
-    scraper.adblock = Adblocker(rules=["https://dude.ron.sh/blockme.css"])
+    scraper.adblock = Adblocker(rules=["https://dude_pyto.ron.sh/blockme.css"])
     return Scraper(scraper=scraper)
 
 

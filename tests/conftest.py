@@ -10,7 +10,7 @@ import respx
 from httpx import Response
 from respx import Router
 
-from dude import Scraper
+from dude_pyto import Scraper
 
 
 class IsInteger:
@@ -39,7 +39,7 @@ class IsUrl:
 
 @pytest.fixture()
 def test_html_path() -> str:
-    return str((Path(__file__).resolve().parent.parent / "examples/dude.html").absolute())
+    return str((Path(__file__).resolve().parent.parent / "examples/dude_pyto.html").absolute())
 
 
 @pytest.fixture()

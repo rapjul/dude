@@ -5,11 +5,11 @@ To use `dude`, start by importing the library.
 === "Python"
 
     ```python
-    from dude import select
+    from dude_pyto import select
     ```
 
-A basic handler function consists of the structure below. 
-A handler function should accept 1 argument (element) and should be decorated with `@select()`. 
+A basic handler function consists of the structure below.
+A handler function should accept 1 argument (element) and should be decorated with `@select()`.
 The handler should return a dictionary.
 Click on the annotations (+ sign) for more details.
 
@@ -33,9 +33,9 @@ The example handler below extracts the text content of any element that matches 
 === "Python"
 
     ```python
-    from dude import select
-    
-    
+    from dude_pyto import select
+
+
     @select(css=".title")
     def result_title(element):
         """
@@ -49,9 +49,9 @@ It is possible to attach a single handler to multiple selectors.
 === "Python"
 
     ```python
-    from dude import select
-    
-    
+    from dude_pyto import select
+
+
     @select(css="<a-selector>")
     @select(selector="<another-selector>")
     def handler(element):
@@ -66,9 +66,9 @@ Please take note that `css`, `xpath`, `text` and `regex` are specific and `selec
 === "Python"
 
     ```python
-    from dude import select
-    
-    
+    from dude_pyto import select
+
+
     @select(css="<css-selector>")     #(1)
     @select(xpath="<xpath-selector>") #(2)
     @select(text="<text-selector>")  #(3)
@@ -91,17 +91,17 @@ To start scraping, use any of the following options. Click on the annotations (+
 === "Terminal"
 
     ```bash
-    dude scrape --url "<url>" --output data.json path/to/script.py #(1)
+    dude_pyto scrape --url "<url>" --output data.json path/to/script.py #(1)
     ```
-    
-    1. You can run your scraper from terminal/shell/command-line by supplying URLs, the output filename of your choice and the paths to your python scripts to `dude scrape` command.
+
+    1. You can run your scraper from terminal/shell/command-line by supplying URLs, the output filename of your choice and the paths to your python scripts to `dude_pyto scrape` command.
 
 === "Python"
 
     ```python
     if __name__ == "__main__":
         import dude
-    
+
         dude.run(urls=["https://dude.ron.sh/"]) #(1)
     ```
 

@@ -1,4 +1,4 @@
-site_name: dude uncomplicated data extraction
+site_name: dude_pyto uncomplicated data extraction
 site_description: A simple framework for writing web scrapers using Python decorators
 repo_url: https://github.com/roniemartinez/dude
 repo_name: roniemartinez/dude

@@ -231,13 +231,17 @@ class SeleniumScraper(ScraperAbstract):
         source_url = (
             request.headers.get("referer") or request.headers.get("origin") or request.headers.get("host") or url
         )
-        if self.adblock.check_network_urls(
-            url=url,
-            source_url=source_url,
-            request_type=request.headers.get("sec-fetch-dest") or "other",
-        ):
+        try:
+            if self.adblock.check_network_urls(
+                url=url,
+                source_url=source_url,
+                request_type=request.headers.get("sec-fetch-dest") or "other",
+            ):
+                logger.info("URL %s has been blocked.", url)
+                request.abort()
+        except ModuleNotFoundError:
             logger.info("URL %s has been blocked.", url)
-            request.abort()
+            return request.abort()
 
     def _get_driver(self, browser_type: str, headless: bool) -> WebDriver:
         # TODO: Add more drivers: https://github.com/SergeyPirogov/webdriver_manager#webdriver-manager-for-python

@@ -3,19 +3,19 @@
 === "CLI"
 
     ```commandline
-    usage: dude scrape [-h] [--url URL] [--playwright | --bs4 | --parsel | --lxml | --pyppeteer | --selenium] [--headed] [--browser {chromium,firefox,webkit}] [--pages PAGES] [--output OUTPUT] [--format FORMAT] [--proxy-server PROXY_SERVER] [--proxy-user PROXY_USER]
+    usage: dude_pyto scrape [-h] [--url URL] [--playwright | --bs4 | --parsel | --lxml | --pyppeteer | --selenium] [--headed] [--browser {chromium,firefox,webkit}] [--pages PAGES] [--output OUTPUT] [--format FORMAT] [--proxy-server PROXY_SERVER] [--proxy-user PROXY_USER]
                        [--proxy-pass PROXY_PASS] [--follow-urls] [--save-per-page] [--ignore-robots-txt]
                        PATH [PATH ...]
-    
-    Run the dude scraper.
-    
+
+    Run the dude_pyto scraper.
+
     optional arguments:
       -h, --help            show this help message and exit
-    
+
     required arguments:
       PATH                  Path to python file/s containing the handler functions.
-      --url URL             Website URL to scrape. Accepts one or more url (e.g. "dude scrape --url <url1> --url <url2> ...")
-    
+      --url URL             Website URL to scrape. Accepts one or more url (e.g. "dude_pyto scrape --url <url1> --url <url2> ...")
+
     optional arguments:
       --playwright          Use Playwright.
       --bs4                 Use BeautifulSoup4.

@@ -1,10 +1,10 @@
 # Getting Started
 
-Dude is a very simple framework for writing web scrapers using Python decorators. The design, inspired by [Flask](https://github.com/pallets/flask), was to easily build a web scraper in just a few lines of code. Dude has an easy-to-learn syntax.
+dude_pyto is a very simple framework for writing web scrapers using Python decorators. The design, inspired by [Flask](https://github.com/pallets/flask), was to easily build a web scraper in just a few lines of code. dude_pyto has an easy-to-learn syntax.
 
-!!! warning 
-    
-    🚨 Dude is currently in Pre-Alpha. Please expect breaking changes.
+!!! warning
+
+    🚨 dude_pyto is currently in Pre-Alpha. Please expect breaking changes.
 
 ## Installation
 
@@ -13,7 +13,7 @@ To install, simply run the following from terminal. Click on the annotations (+ 
 === "Terminal"
 
     ```bash
-    pip install pydude #(1)
+    pip install pydude_pyto #(1)
     playwright install #(2)
     ```
 
@@ -27,9 +27,9 @@ The simplest web scraper will look like the example below. Click on the annotati
 === "Python"
 
     ```python
-    from dude import select #(1)
-    
-    
+    from dude_pyto import select #(1)
+
+
     @select(css="a")  #(2)
     def get_link(element): #(3)
         return {"url": element.get_attribute("href")} #(4)
@@ -49,17 +49,17 @@ To start scraping, use any of the following options. Click on the annotations (+
 === "Terminal"
 
     ```bash
-    dude scrape --url "<url>" --output data.json path/to/script.py #(1)
+    dude_pyto scrape --url "<url>" --output data.json path/to/script.py #(1)
     ```
-    
-    1. You can run your scraper from terminal/shell/command-line by supplying URLs, the output filename of your choice and the paths to your python scripts to `dude scrape` command.
+
+    1. You can run your scraper from terminal/shell/command-line by supplying URLs, the output filename of your choice and the paths to your python scripts to `dude_pyto scrape` command.
 
 === "Python"
 
     ```python
     if __name__ == "__main__":
         import dude
-    
+
         dude.run(urls=["https://dude.ron.sh/"]) #(1)
     ```
 

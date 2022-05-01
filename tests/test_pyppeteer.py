@@ -2,18 +2,23 @@ from typing import Any, Dict, List, Optional
 from unittest import mock
 
 import pytest
-from braveblock import Adblocker
+# from braveblock import Adblocker
 from pyppeteer.element_handle import ElementHandle
 from pyppeteer.page import Page
 
-from dude import Scraper
-from dude.optional.pyppeteer_scraper import PyppeteerScraper
+try:
+    from braveblock import Adblocker
+except ImportError:
+    pass
+
+from dude_pyto import Scraper
+from dude_pyto.optional.pyppeteer_scraper import PyppeteerScraper
 
 
 @pytest.fixture()
 def scraper_application_with_pyppeteer_parser() -> Scraper:
     scraper = PyppeteerScraper()
-    scraper.adblock = Adblocker(rules=["https://dude.ron.sh/blockme.css"])
+    scraper.adblock = Adblocker(rules=["https://dude_pyto.ron.sh/blockme.css"])
     return Scraper(scraper=scraper)
 
 

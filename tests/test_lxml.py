@@ -6,7 +6,7 @@ import pytest
 from lxml.etree import _Element
 from respx import Router
 
-from dude import Scraper
+from dude_pyto import Scraper
 
 
 @pytest.fixture()

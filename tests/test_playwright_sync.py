@@ -4,12 +4,17 @@ from unittest import mock
 
 import pytest
 import yaml
-from braveblock import Adblocker
+# from braveblock import Adblocker
 from playwright import sync_api
 
-from dude import Scraper, storage
-from dude.playwright_scraper import PlaywrightScraper
-from dude.storage import save_csv, save_json, save_yaml
+try:
+    from braveblock import Adblocker
+except ImportError:
+    pass
+
+from dude_pyto import Scraper, storage
+from dude_pyto.playwright_scraper import PlaywrightScraper
+from dude_pyto.storage import save_csv, save_json, save_yaml
 
 
 @pytest.fixture()
@@ -119,7 +124,7 @@ def playwright_shutdown(scraper_application: Scraper, mock_database: mock.MagicM
 @pytest.fixture()
 def scraper_application_with_parser() -> Scraper:
     scraper = PlaywrightScraper()
-    scraper.adblock = Adblocker(rules=["https://dude.ron.sh/blockme.css"])
+    scraper.adblock = Adblocker(rules=["https://dude_pyto.ron.sh/blockme.css"])
     return Scraper(scraper=scraper)
 
 

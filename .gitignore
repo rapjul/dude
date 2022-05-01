@@ -140,3 +140,6 @@ cython_debug/
 
 # Draw.io
 *.drawio
+
+# Personal Demo Files
+demos/

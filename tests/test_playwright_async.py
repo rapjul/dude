@@ -6,7 +6,7 @@ from unittest import mock
 import pytest
 from playwright import async_api
 
-from dude import Scraper
+from dude_pyto import Scraper
 
 
 @pytest.fixture()

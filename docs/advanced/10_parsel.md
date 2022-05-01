@@ -17,25 +17,25 @@ Instead of ElementHandle objects when using Playwright as parser backend, Select
 === "Python"
 
     ```python
-    from dude import select
-    
-    
+    from dude_pyto import select
+
+
     @select(css="a.url::attr(href)") # (1)
     def result_url(selector):
         return {"url": selector.get()} # (2)
-    
-    
+
+
     @select(css=".title::text") # (3)
     def result_title(selector):
         return {"title": selector.get()}
     ```
-    
+
     1. Attributes can be accessed by CSS non-standard pseudo-element, `::attr(name)`.
     2. Values from Selector objects can be accessed using `.get()` method.
     3. Texts can be accessed by CSS non-standard pseudo-element, `::text`.
 
 
-## Running Dude with Parsel 
+## Running dude_pyto with Parsel
 
 You can run Parsel parser backend using the `--parsel` command-line argument or `parser="parsel"` parameter to `run()`.
 
@@ -43,7 +43,7 @@ You can run Parsel parser backend using the `--parsel` command-line argument or 
 === "Terminal"
 
     ```commandline
-    dude scrape --url "<url>" --parsel --output data.json path/to/script.py
+    dude_pyto scrape --url "<url>" --parsel --output data.json path/to/script.py
     ```
 
 === "Python"

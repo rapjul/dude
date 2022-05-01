@@ -1,4 +1,4 @@
-from dude import group, select
+from dude_pyto import group, select
 
 
 @group(css=".custom-group")
@@ -22,7 +22,7 @@ def result_description(element):
 if __name__ == "__main__":
     from pathlib import Path
 
-    import dude
+    import dude_pyto
 
-    html = f"file://{(Path(__file__).resolve().parent / 'dude.html').absolute()}"
-    dude.run(urls=[html])
+    html = f"file://{(Path(__file__).resolve().parent / 'dude_pyto.html').absolute()}"
+    dude_pyto.run(urls=[html])

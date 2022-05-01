@@ -1,4 +1,4 @@
-from dude import select
+from dude_pyto import select
 
 
 @select(css=".title")
@@ -14,7 +14,7 @@ def result_description(element):
 if __name__ == "__main__":
     from pathlib import Path
 
-    import dude
+    import dude_pyto
 
     html = f"file://{(Path(__file__).resolve().parent / 'example.html').absolute()}"
-    dude.run(urls=[html])
+    dude_pyto.run(urls=[html])

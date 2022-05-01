@@ -1,17 +1,17 @@
 # Custom Storage
 
-Dude currently support `json`, `yaml/yml` and `csv` formats only. 
+dude_pyto currently support `json`, `yaml/yml` and `csv` formats only.
 However, this can be extended to support a custom storage or override the existing formats using the `@save()` decorator.
 The save function should accept 2 parameters, `data` (list of dictionary of scraped data) and optional `output` (can be filename or `None`).
 Take note that the save function must return a boolean for success.
 
-The example below prints the output to terminal using tabulate for illustration purposes only. 
+The example below prints the output to terminal using tabulate for illustration purposes only.
 You can use the `@save()` decorator in other ways like saving the scraped data to spreadsheets, database or send it to an API.
 
 === "Python"
 
     ```python
-    from dude import save
+    from dude_pyto import save
     import tabulate
 
 
@@ -30,7 +30,7 @@ The custom storage above can then be called using any of the options below.
 === "Terminal"
 
     ```bash
-    dude scrape --url "<url>" path/to/script.py --format table
+    dude_pyto scrape --url "<url>" path/to/script.py --format table
     ```
 
 === "Python"
@@ -38,7 +38,7 @@ The custom storage above can then be called using any of the options below.
     ```python
     if __name__ == "__main__":
         import dude
-    
+
         dude.run(urls=["<url>"], pages=2, format="table")
     ```
 
@@ -61,7 +61,7 @@ To run the scraper in per-page save, pass `--save-per-page` argument.
 === "Terminal"
 
     ```bash
-    dude scrape --url "<url>" path/to/script.py --format table --save-per-page
+    dude_pyto scrape --url "<url>" path/to/script.py --format table --save-per-page
     ```
 
 === "Python"
@@ -75,7 +75,7 @@ To run the scraper in per-page save, pass `--save-per-page` argument.
 
 !!! note
 
-    The option `--save-per-page` is best used with events to make sure that connections or file handles are opened 
+    The option `--save-per-page` is best used with events to make sure that connections or file handles are opened
     and closed properly. Check the examples below.
 
 ## Examples

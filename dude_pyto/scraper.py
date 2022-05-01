@@ -2,7 +2,7 @@ import logging
 from typing import Any, Optional, Sequence, Type
 
 from .base import ScraperBase
-from .playwright_scraper import PlaywrightScraper
+# from .playwright_scraper import PlaywrightScraper
 
 logger = logging.getLogger(__name__)
 
@@ -53,10 +53,6 @@ class Scraper(ScraperBase):
                 from .optional.beautifulsoup_scraper import BeautifulSoupScraper
 
                 scraper_class = BeautifulSoupScraper
-            elif parser == "parsel":
-                from .optional.parsel_scraper import ParselScraper
-
-                scraper_class = ParselScraper
             elif parser == "lxml":
                 from .optional.lxml_scraper import LxmlScraper
 
@@ -65,12 +61,19 @@ class Scraper(ScraperBase):
                 from .optional.pyppeteer_scraper import PyppeteerScraper
 
                 scraper_class = PyppeteerScraper
-            elif parser == "selenium":
-                from .optional.selenium_scraper import SeleniumScraper
-
-                scraper_class = SeleniumScraper
+            # elif parser == "parsel":
             else:
-                scraper_class = PlaywrightScraper
+                from .optional.parsel_scraper import ParselScraper
+
+                scraper_class = ParselScraper
+            # elif parser == "selenium":
+            #     from .optional.selenium_scraper import SeleniumScraper
+            #
+            #     scraper_class = SeleniumScraper
+            # else:
+            #     from .playwright_scraper import PlaywrightScraper
+            #
+            #     scraper_class = PlaywrightScraper
 
             self.scraper = scraper_class(
                 rules=self.rules,

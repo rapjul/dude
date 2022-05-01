@@ -1,4 +1,4 @@
-from dude import select
+from dude_pyto import select
 
 
 @select(css=".custom-group")
@@ -26,7 +26,7 @@ def result_handler(element):
 if __name__ == "__main__":
     from pathlib import Path
 
-    import dude
+    import dude_pyto
 
-    html = f"file://{(Path(__file__).resolve().parent / 'dude.html').absolute()}"
-    dude.run(urls=[html])
+    html = f"file://{(Path(__file__).resolve().parent / 'dude_pyto.html').absolute()}"
+    dude_pyto.run(urls=[html])

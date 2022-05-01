@@ -16,27 +16,27 @@ Instead of Playwright's `ElementHandle` objects when using Playwright as parser 
 === "Python"
 
     ```python
-    from dude import select
+    from dude_pyto import select
 
 
     @select(css="a.url")
     def result_url(element, page):
         return {"url": element.get_attribute("href")}
-    
-    
+
+
     @select(css=".title")
     def result_title(element, page):
         return {"title": element.text}
     ```
 
-## Running Dude with Selenium 
+## Running dude_pyto with Selenium
 
 You can run Selenium parser backend using the `--selenium` command-line argument or `parser="selenium"` parameter to `run()`.
 
 === "Terminal"
 
     ```commandline
-    dude scrape --url "<url>" --selenium --output data.json path/to/script.py
+    dude_pyto scrape --url "<url>" --selenium --output data.json path/to/script.py
     ```
 
 === "Python"

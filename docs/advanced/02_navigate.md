@@ -2,16 +2,16 @@
 
 Navigate handlers are used to move from page to page.
 
-To create a Navigate handler, you can pass `navigate=True` parameter to `@select()` decorator. 
+To create a Navigate handler, you can pass `navigate=True` parameter to `@select()` decorator.
 Like Setup handlers, Navigate handlers should accept 2 parameters, the element matched by the selector and the Page object (or WebDriver object in Selenium).
 Click on the annotations (+ sign) for more details.
 
 === "Python"
 
     ```python
-    from dude import select
-    
-    
+    from dude_pyto import select
+
+
     @select(text="Next", navigate=True) # (1)
     def next_page(element, page):
         """
