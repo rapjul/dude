@@ -105,15 +105,19 @@ class PyppeteerScraper(ScraperAbstract):
         source_url = (
             request.headers.get("referer") or request.headers.get("origin") or request.headers.get("host") or url
         )
-        if self.adblock.check_network_urls(
-            url=url,
-            source_url=source_url,
-            request_type=request.resourceType,
-        ):
+        try:
+            if self.adblock.check_network_urls(
+                url=url,
+                source_url=source_url,
+                request_type=request.resourceType,
+            ):
+                logger.info("URL %s has been blocked.", url)
+                return await request.abort()
+            else:
+                return await request.continue_()
+        except AttributeError:
             logger.info("URL %s has been blocked.", url)
             return await request.abort()
-        else:
-            return await request.continue_()
 
     def run_sync(
         self,

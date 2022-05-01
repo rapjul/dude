@@ -1,6 +1,6 @@
 # Supported Parser Backends
 
-By default, Dude uses Playwright but gives you an option to use parser backends that you are familiar with.
+By default, dude_pyto uses Playwright but gives you an option to use parser backends that you are familiar with.
 It is possible to use parser backends like [BeautifulSoup4](https://www.crummy.com/software/BeautifulSoup/bs4/doc/), [Parsel](https://github.com/scrapy/parsel) and [lxml](https://lxml.de/).
 
 Here is the summary of features supported by each parser backend.

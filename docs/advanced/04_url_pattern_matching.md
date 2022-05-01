@@ -1,15 +1,15 @@
 # URL Pattern Matching
 
 In order to make a handler function to run on specific websites, a `url` pattern parameter can be passed to `@select()` decorator.
-The `url_match` parameter should be valid Unix shell-style wildcards (see https://docs.python.org/3/library/fnmatch.html) or custom function that returns a boolean. 
+The `url_match` parameter should be valid Unix shell-style wildcards (see https://docs.python.org/3/library/fnmatch.html) or custom function that returns a boolean.
 The example below will only run if the URL of the current page matches `*.com/*`.
 
 === "Python"
 
     ```python
-    from dude import select
-    
-    
+    from dude_pyto import select
+
+
     @select(css=".title", url_match="*.com/*")
     def result_title(element):
         return {"title": element.text_content()}

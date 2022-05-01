@@ -48,10 +48,10 @@ def cli() -> None:  # pragma: no cover
     import argparse
     import importlib.util
 
-    parser = argparse.ArgumentParser(description="dude uncomplicated data extraction")
+    parser = argparse.ArgumentParser(description="dude_pyto uncomplicated data extraction")
     parser.add_argument("-V", "--version", dest="version", action="store_true", required=False, help="show version")
     subparsers = parser.add_subparsers(title="subcommands")
-    scrape = subparsers.add_parser("scrape", description="Run the dude scraper.", help="Run the dude scraper.")
+    scrape = subparsers.add_parser("scrape", description="Run the dude_pyto scraper.", help="Run the dude_pyto scraper.")
     # required parameters
     required = scrape.add_argument_group("required arguments")
     required.add_argument(
@@ -69,7 +69,7 @@ def cli() -> None:  # pragma: no cover
         type=str,
         required=False,
         default=[],
-        help='Website URL to scrape. Accepts one or more url (e.g. "dude scrape --url <url1> --url <url2> ...")',
+        help='Website URL to scrape. Accepts one or more url (e.g. "dude_pyto scrape --url <url1> --url <url2> ...")',
     )
     # optional parameters
     optional = scrape.add_argument_group("optional arguments")
@@ -200,8 +200,8 @@ def cli() -> None:  # pragma: no cover
     if arguments.version:
         import pkg_resources
 
-        version = pkg_resources.get_distribution("pydude").version
-        print("dude", version)
+        version = pkg_resources.get_distribution("pydude_pyto").version
+        print("dude_pyto", version)
         return
 
     if (arguments.proxy_user or arguments.proxy_pass) and not arguments.proxy_server:

@@ -30,6 +30,21 @@ def _save_json(data: List[Dict], output: str) -> None:  # pragma: no cover
     logger.info("%d items saved to %s.", len(data), output)
 
 
+def _save_csv(data: List[Dict], output: str) -> None:  # pragma: no cover
+    import csv
+
+    headers: Set[str] = set()
+    rows = []
+    for item in data:
+        headers.update(item.keys())
+        rows.append(item)
+    with open(output, "w") as f:
+        writer = csv.DictWriter(f, fieldnames=sorted(headers))
+        writer.writeheader()
+        writer.writerows(rows)
+    logger.info("%d items saved to %s.", len(data), output)
+
+
 def save_csv(data: List[Dict], output: Optional[str]) -> bool:
     """
     Saves data to CSV.
@@ -49,6 +64,14 @@ def save_csv(data: List[Dict], output: Optional[str]) -> bool:
     return True
 
 
+def _save_yaml(data: List[Dict], output: str) -> None:  # pragma: no cover
+    import yaml
+
+    with open(output, "w") as f:
+        yaml.safe_dump(data, f)
+    logger.info("%d items saved to %s.", len(data), output)
+
+
 def save_yaml(data: List[Dict], output: Optional[str]) -> bool:
     """
     Saves data to YAML.
@@ -65,26 +88,3 @@ def save_yaml(data: List[Dict], output: Optional[str]) -> bool:
 
         yaml.safe_dump(data, sys.stdout)
     return True
-
-
-def _save_csv(data: List[Dict], output: str) -> None:  # pragma: no cover
-    import csv
-
-    headers: Set[str] = set()
-    rows = []
-    for item in data:
-        headers.update(item.keys())
-        rows.append(item)
-    with open(output, "w") as f:
-        writer = csv.DictWriter(f, fieldnames=sorted(headers))
-        writer.writeheader()
-        writer.writerows(rows)
-    logger.info("%d items saved to %s.", len(data), output)
-
-
-def _save_yaml(data: List[Dict], output: str) -> None:  # pragma: no cover
-    import yaml
-
-    with open(output, "w") as f:
-        yaml.safe_dump(data, f)
-    logger.info("%d items saved to %s.", len(data), output)

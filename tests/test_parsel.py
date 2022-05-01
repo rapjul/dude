@@ -6,7 +6,7 @@ import parsel
 import pytest
 from respx import Router
 
-from dude import Scraper
+from dude_pyto import Scraper
 
 
 @pytest.fixture()

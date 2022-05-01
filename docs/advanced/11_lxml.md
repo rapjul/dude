@@ -17,24 +17,24 @@ Instead of ElementHandle objects when using Playwright as parser backend, [Eleme
 === "Python"
 
     ```python
-    from dude import select
+    from dude_pyto import select
 
 
     @select(xpath='.//a[contains(@class, "url")]/@href') # (1)
     def result_url(href):
         return {"url": href} # (2)
-    
+
 
     @select(css="a.url")  # (3)
     def result_url_css(element):
         return {"url_css": element.attrib["href"]} # (4)
-    
-    
+
+
     @select(css='.title')
     def result_title(element):
         return {"title": element.text} # (5)
     ```
-    
+
     1. Attributes can be accessed using XPath `@href`.
     2. When using XPath `@href` (or `text`), "smart" strings are returned.
     3. The lxml backend supports CSS selectors via `cssselect`.
@@ -42,7 +42,7 @@ Instead of ElementHandle objects when using Playwright as parser backend, [Eleme
     5. Text content can be accessed from lxml elements using `element.text`.
 
 
-## Running Dude with lxml 
+## Running dude_pyto with lxml
 
 You can run lxml parser backend using the `--lxml` command-line argument or `parser="lxml"` parameter to `run()`.
 
@@ -50,7 +50,7 @@ You can run lxml parser backend using the `--lxml` command-line argument or `par
 === "Terminal"
 
     ```commandline
-    dude scrape --url "<url>" --lxml --output data.json path/to/script.py
+    dude_pyto scrape --url "<url>" --lxml --output data.json path/to/script.py
     ```
 
 === "Python"

@@ -2,7 +2,7 @@ import shutil
 import uuid
 from pathlib import Path
 
-from dude import post_setup, pre_setup, shutdown, startup
+from dude_pyto import post_setup, pre_setup, shutdown, startup
 
 SAVE_DIR: Path
 
@@ -46,7 +46,7 @@ def zip_all():
 
 
 if __name__ == "__main__":
-    import dude
+    import dude_pyto
 
-    html = f"file://{(Path(__file__).resolve().parent / 'dude.html').absolute()}"
-    dude.run(urls=[html])
+    html = f"file://{(Path(__file__).resolve().parent / 'dude_pyto.html').absolute()}"
+    dude_pyto.run(urls=[html])

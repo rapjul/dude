@@ -16,14 +16,14 @@ The example below makes sure that `result_description()` will be called first be
 === "Python"
 
     ```python
-    from dude import select
+    from dude_pyto import select
 
 
     @select(css=".title", priority=1)
     def result_title(element):
         return {"title": element.text_content()}
-    
-    
+
+
     @select(css=".description", priority=0)
     def result_description(element):
         return {"description": element.text_content()}
@@ -35,9 +35,9 @@ Take note that if `css="#pnnext"` exists, then `text="Next"` will not be queried
 === "Python"
 
     ```python
-    from dude import select
-    
-    
+    from dude_pyto import select
+
+
     @select(text="Next", navigate=True)
     @select(css="#pnnext", navigate=True, priority=0)
     def next_page(element, page):

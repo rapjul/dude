@@ -1,4 +1,4 @@
-from dude import Request, select, start_requests
+from dude_pyto import Request, select, start_requests
 
 """
 This example demonstrates how to use custom HTTPX Request object
@@ -7,7 +7,7 @@ This example demonstrates how to use custom HTTPX Request object
 
 @start_requests()
 def custom_requests():
-    for url in ["https://dude.ron.sh"]:
+    for url in ["https://dude_pyto.ron.sh"]:
         yield Request(method="GET", url=url)
 
 
@@ -17,6 +17,6 @@ def result_url(soup):
 
 
 if __name__ == "__main__":
-    import dude
+    import dude_pyto
 
-    dude.run(urls=[], parser="bs4")
+    dude_pyto.run(urls=[], parser="bs4")

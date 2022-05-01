@@ -143,11 +143,15 @@ class PlaywrightScraper(ScraperAbstract):
             or route.request.headers.get("host")
             or url
         )
-        if self.adblock.check_network_urls(
-            url=url,
-            source_url=source_url,
-            request_type=route.request.resource_type,
-        ):
+        try:
+            if self.adblock.check_network_urls(
+                url=url,
+                source_url=source_url,
+                request_type=route.request.resource_type,
+            ):
+                logger.info("URL %s has been blocked.", url)
+                return route.abort()
+        except ModuleNotFoundError:
             logger.info("URL %s has been blocked.", url)
             return route.abort()
         return route.continue_()

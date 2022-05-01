@@ -1,4 +1,4 @@
-from dude import select
+from dude_pyto import select
 
 """
 This example demonstrates how to use lxml + HTTPX
@@ -32,6 +32,6 @@ def result_description(text):
 
 
 if __name__ == "__main__":
-    import dude
+    import dude_pyto
 
-    dude.run(urls=["https://dude.ron.sh"], parser="lxml")
+    dude_pyto.run(urls=["https://dude_pyto.ron.sh"], parser="lxml")

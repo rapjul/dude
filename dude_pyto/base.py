@@ -26,7 +26,11 @@ from urllib.error import URLError
 from urllib.parse import urljoin, urlparse
 from urllib.robotparser import RobotFileParser
 
-from braveblock import Adblocker
+# from braveblock import Adblocker
+try:
+    from braveblock import Adblocker
+except ImportError:
+    pass
 
 from .rule import Rule, Selector, rule_filter
 from .scraped_data import ScrapedData, scraped_data_grouper, scraped_data_sorter
@@ -69,7 +73,10 @@ class ScraperBase(ABC):
         self.events: DefaultDict = events or collections.defaultdict(list)
         self.has_async = has_async
         self.scraper = scraper
-        self.adblock = Adblocker()
+        try:
+            self.adblock = Adblocker()
+        except NameError:
+            self.adblock = None
         self.urls: Deque = collections.deque()  # allows dynamically appending new URLs for crawling
         self.requests: Deque = requests or collections.deque()  # allows dynamically appending new requests for crawling
         self.allowed_domains: Set[str] = set()
@@ -376,7 +383,7 @@ class ScraperBase(ABC):
     def can_fetch_and_crawl_delay(self, url: str) -> Tuple[bool, int]:
         if self.ignore_robots_txt:
             return True, 0
-        user_agent = "dude"  # TODO: https://github.com/roniemartinez/dude/issues/63
+        user_agent = "dude_pyto"  # TODO: https://github.com/roniemartinez/dude_pyto/issues/63
         # TODO: Store content so as to prevent re-fetching
         robots_url = urljoin(url, "/robots.txt")
         parser = RobotFileParser(url=robots_url)

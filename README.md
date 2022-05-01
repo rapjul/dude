@@ -29,13 +29,23 @@
     </tr>
 </table>
 
-# dude uncomplicated data extraction
+# dude uncomplicated data extraction (For Pyto on iOS)
 
-Dude is a very simple framework for writing web scrapers using Python decorators.
+dude_pyto is a very simple framework for writing web scrapers using Python decorators.
 The design, inspired by [Flask](https://github.com/pallets/flask), was to easily build a web scraper in just a few lines of code.
-Dude has an easy-to-learn syntax.
+dude_pyto has an easy-to-learn syntax.
 
-> 🚨 Dude is currently in Pre-Alpha. Please expect breaking changes.
+> 🚨 dude_pyto is currently in Pre-Alpha. Please expect breaking changes.
+
+## Special Version for Pyto
+
+> This branch makes Braveblock an optional dependency for use with [Pyto](https://pyto.app/) on iOS.
+>
+> Pyto, and other similar iOS apps, do not support the compilation of code after the app has been approved.
+>
+> So, the Rust-based code of Braveblock will not be downloaded through Pyto.
+
+**Please visit [roniemartinez/dude](https://github.com/roniemartinez/dude) for the original repository.**
 
 ## Installation
 
@@ -51,7 +61,7 @@ playwright install  # Install playwright binaries for Chrome, Firefox and Webkit
 The simplest web scraper will look like this:
 
 ```python
-from dude import select
+from dude_pyto import select
 
 
 @select(css="a")
@@ -63,10 +73,10 @@ The example above will get all the [hyperlink](https://en.wikipedia.org/wiki/Hyp
 
 ## How to run the scraper
 
-You can run your scraper from terminal/shell/command-line by supplying URLs, the output filename of your choice and the paths to your python scripts to `dude scrape` command.
+You can run your scraper from terminal/shell/command-line by supplying URLs, the output filename of your choice and the paths to your python scripts to `dude_pyto scrape` command.
 
 ```bash
-dude scrape --url "<url>" --output data.json path/to/script.py
+dude_pyto scrape --url "<url>" --output data.json path/to/script.py
 ```
 
 The output in `data.json` should contain the actual URL and the metadata prepended with underscore.
@@ -127,12 +137,12 @@ Changing the output to `--output data.csv` should result in the following CSV co
 
 ## Supported Parser Backends
 
-By default, Dude uses Playwright but gives you an option to use parser backends that you are familiar with.
-It is possible to use parser backends like 
-[BeautifulSoup4](https://roniemartinez.github.io/dude/advanced/09_beautifulsoup4.html), 
+By default, dude_pyto uses Playwright but gives you an option to use parser backends that you are familiar with.
+It is possible to use parser backends like
+[BeautifulSoup4](https://roniemartinez.github.io/dude/advanced/09_beautifulsoup4.html),
 [Parsel](https://roniemartinez.github.io/dude/advanced/10_parsel.html),
 [lxml](https://roniemartinez.github.io/dude/advanced/11_lxml.html),
-[Pyppeteer](https://roniemartinez.github.io/dude/advanced/12_pyppeteer.html), 
+[Pyppeteer](https://roniemartinez.github.io/dude/advanced/12_pyppeteer.html),
 and [Selenium](https://roniemartinez.github.io/dude/advanced/13_selenium.html).
 
 Here is the summary of features supported by each parser backend.
@@ -231,15 +241,15 @@ All the advanced and useful features are documented there.
 
 ## Requirements
 
-- ✅ Any dude should know how to work with selectors (CSS or XPath).
+- ✅ Any dude_pyto should know how to work with selectors (CSS or XPath).
 - ✅ Familiarity with any backends that you love (see [Supported Parser Backends](#supported-parser-backends))
 - ✅ Python decorators... you'll live, dude!
 
 ## Why name this project "dude"?
 
 - ✅ A [Recursive acronym](https://en.wikipedia.org/wiki/Recursive_acronym) looks nice.
-- ✅ Adding "uncomplicated" (like [`ufw`](https://wiki.ubuntu.com/UncomplicatedFirewall)) into the name says it is a very simple framework. 
-- ✅ Puns! I also think that if you want to do web scraping, there's probably some random dude around the corner who can make it very easy for you to start with it. 😊
+- ✅ Adding "uncomplicated" (like [`ufw`](https://wiki.ubuntu.com/UncomplicatedFirewall)) into the name says it is a very simple framework.
+- ✅ Puns! I also think that if you want to do web scraping, there's probably some random dude_pyto around the corner who can make it very easy for you to start with it. 😊
 
 ## Author
 

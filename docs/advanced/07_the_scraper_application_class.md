@@ -12,18 +12,18 @@ It is possible to create your own scraper application object using the example b
 === "Python"
 
     ```python
-    
-    from dude import Scraper
-    
-    
+
+    from dude_pyto import Scraper
+
+
     app = Scraper()
-    
-    
+
+
     @app.select(css=".title")
     def result_title(element):
         return {"title": element.text_content()}
-    
-    
+
+
     if __name__ == '__main__':
         app.run(urls=["https://dude.ron.sh/"])
     ```

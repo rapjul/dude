@@ -29,18 +29,25 @@ def http_get(client: httpx.Client, request: Request) -> Tuple[Optional[str], str
 
 
 class HTTPXMixin:
+    # @staticmethod
     def _block_httpx_request_if_needed(self, request: Request) -> None:
         url = str(request.url)
         source_url = (
             request.headers.get("referer") or request.headers.get("origin") or request.headers.get("host") or url
         )
-        if self.adblock.check_network_urls(  # type: ignore
-            url=url,
-            source_url=source_url,
-            request_type=request.headers.get("sec-fetch-dest") or "other",
-        ):
-            logger.info("URL %s has been blocked.", url)
-            raise httpx.RequestError(message=f"URL {url} has been blocked.", request=request)
+        request_type = request.headers.get("sec-fetch-dest")
+        # try:
+        #     if self.adblock.check_network_urls(  # type: ignore
+        #         url=url,
+        #         source_url=source_url,
+        #         request_type=request.headers.get("sec-fetch-dest") or "other",
+        #     ):
+        #         logger.info("URL %s has been blocked.", url)
+        #         raise httpx.RequestError(message=f"URL {url} has been blocked.", request=request)
+        # except AttributeError:
+        #     httpx.RequestError()
+        #     # logger.info("URL %s has been blocked.", url)
+        #     # raise httpx.RequestError(message=f"URL {url} has been blocked.", request=request)
 
     async def _async_block_httpx_request_if_needed(self, request: Request) -> None:
         self._block_httpx_request_if_needed(request)

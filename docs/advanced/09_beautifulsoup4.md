@@ -17,24 +17,24 @@ Instead of ElementHandle objects when using Playwright as parser backend, Soup o
 === "Python"
 
     ```python
-    from dude import select
-    
-    
+    from dude_pyto import select
+
+
     @select(css="a.url")
     def result_url(soup):
         return {"url": soup["href"]} # (1)
-    
-    
+
+
     @select(css=".title")
     def result_title(soup):
         return {"title": soup.get_text()} # (2)
     ```
-    
+
     1. Attributes can be accessed by key.
     2. Texts can be accessed using the `get_text()` method.
 
 
-## Running Dude with BeautifulSoup4 
+## Running dude_pyto with BeautifulSoup4
 
 You can run BeautifulSoup4 parser backend using the `--bs4` command-line argument or `parser="bs4"` parameter to `run()`.
 
@@ -42,7 +42,7 @@ You can run BeautifulSoup4 parser backend using the `--bs4` command-line argumen
 === "Terminal"
 
     ```commandline
-    dude scrape --url "<url>" --bs4 --output data.json path/to/script.py
+    dude_pyto scrape --url "<url>" --bs4 --output data.json path/to/script.py
     ```
 
 === "Python"

@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 from typing import IO
 
-from dude import save, select, shutdown, startup
+from dude_pyto import save, select, shutdown, startup
 
 jsonl_file: IO
 
@@ -32,7 +32,7 @@ def save_jsonl(data, output) -> bool:
 
 
 if __name__ == "__main__":
-    import dude
+    import dude_pyto
 
-    html = f"file://{(Path(__file__).resolve().parent / 'dude.html').absolute()}"
-    dude.run(urls=[html], format="jsonl", save_per_page=True)
+    html = f"file://{(Path(__file__).resolve().parent / 'dude_pyto.html').absolute()}"
+    dude_pyto.run(urls=[html], format="jsonl", save_per_page=True)

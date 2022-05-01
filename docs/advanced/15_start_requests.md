@@ -12,23 +12,23 @@ Click on the annotations (+ sign) for more details.
 === "Python"
 
     ```python
-    from dude import Request # (1)
+    from dude_pyto import Request # (1)
 
 
     @start_requests()
     def custom_requests():
         for url in ["https://dude.ron.sh"]:
             yield Request(method="GET", url=url) # (2)
-    
-    
+
+
     @select(css="a.url")
     def result_url(soup):
         return {"url": soup["href"]}
-    
-    
+
+
     if __name__ == "__main__":
         import dude
-    
+
         dude.run(urls=[], parser="bs4") # (3)
     ```
 

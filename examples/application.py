@@ -1,4 +1,4 @@
-from dude import Scraper
+from dude_pyto import Scraper
 
 app = Scraper()
 
@@ -21,5 +21,5 @@ def result_description(element):
 if __name__ == "__main__":
     from pathlib import Path
 
-    html = f"file://{(Path(__file__).resolve().parent / 'dude.html').absolute()}"
+    html = f"file://{(Path(__file__).resolve().parent / 'dude_pyto.html').absolute()}"
     app.run(urls=[html])
