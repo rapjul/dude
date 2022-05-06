@@ -31,11 +31,11 @@ jobs:
           - os: macos-latest
             pip-cache: ~/Library/Caches/pip
             poetry-cache: ~/Library/Caches/pypoetry
-            chromedriver-version: 99.0.4844.51  # https://chromedriver.chromium.org/downloads
+            chromedriver-version: 100.0.4896.60  # https://chromedriver.chromium.org/downloads
           - os: windows-latest
             pip-cache: ~\AppData\Local\pip\Cache
             poetry-cache: ~\AppData\Local\pypoetry\Cache
-            chromedriver-version: 99.0.4844.51  # https://chromedriver.chromium.org/downloads
+            chromedriver-version: 101.0.4951.41  # https://chromedriver.chromium.org/downloads
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python-version }}
