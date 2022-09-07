@@ -56,14 +56,14 @@ pyppeteer = ["pyppeteer"]
 selenium = ["selenium-wire", "webdriver-manager", "pybrowsers"]
 
 [tool.poetry.dev-dependencies]
-autoflake = "^1.3.1"
-black = "^22.6"
+autoflake = "^1.5.3"
+black = "^22.8"
 isort = "^5.10.1"
-mkdocs-material = "^8.2.9"
-mkdocstrings = "^0.18.1"
-mypy = "^0.942"
-pyproject-flake8 = "^0.0.1a4"
-pytest = "^7.1.1"
+mkdocs-material = "^8.4.2"
+mkdocstrings = { version = "^0.19.0", extras = ["python-legacy"] }
+mypy = "^0.971"
+pyproject-flake8 = "^0.0.1a5"
+pytest = "^7.1.3"
 pytest-clarity = "^1.0.1"
 pytest-cov = "^3.0.0"
 respx = "^0.19.2"
