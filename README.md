@@ -234,6 +234,20 @@ Here is the summary of features supported by each parser backend.
 </tbody>
 </table>
 
+## Using the Docker image
+
+Pull the docker image using the following command.
+
+```console
+docker pull roniemartinez/dude
+```
+
+Assuming that `script.py` exist in the current directory, run Dude using the following command.
+
+```console
+docker run -it --rm -v "$PWD":/code roniemartinez/dude dude scrape --url <url> script.py
+```
+
 ## Documentation
 
 Read the complete documentation at [https://roniemartinez.github.io/dude/](https://roniemartinez.github.io/dude/).
